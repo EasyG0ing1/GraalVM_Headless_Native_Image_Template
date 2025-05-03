@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${PACKAGE_NAME}</groupId>
+    <artifactId>GraalVM_Headless_Native_Image_Template</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>GraalVM_Headless_Native_Image_Template</name>
+    <description>Blank project for GraalVM Headless Native Images</description>
+
+    <properties>
+        <compatibility-arg/>
+        <package.type/>
+        <system-linker-arg/>
+        <system-native-image-arg/>
+        <mainClass>${groupId}.App</mainClass>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+        <!--Dependencies-->
+        <version.picocli>4.7.7</version.picocli>
+        <!--Plugins-->
+        <versions-maven-plugin>2.18.0</versions-maven-plugin>
+        <version-maven-enforcer-plugin>3.5.0</version-maven-enforcer-plugin>
+        <version-maven-assembly-plugin>3.7.1</version-maven-assembly-plugin>
+        <version-native-maven-plugin>0.10.6</version-native-maven-plugin>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>${version.picocli}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>version.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>META-INF/native-image/${groupId}/${project.name}/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- Maven Versions -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>display-dependency-updates</goal>
+                            <goal>display-plugin-updates</goal>
+                            <goal>property-updates-report</goal>
+                            <goal>dependency-updates-report</goal>
+                            <goal>plugin-updates-report</goal>
+                            <goal>update-properties</goal>
+                            <goal>use-latest-versions</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--Maven Enforcer Plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${version-maven-enforcer-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>4.0.0-rc-2</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven Assembly Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${version-maven-assembly-plugin}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <finalName>${name}</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>maven_central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
+
+    <profiles>
+        <!--native profile-->
+        <profile>
+            <id>native</id>
+            <build>
+                <plugins>
+                    <!-- GraalVM Native Maven Plugin -->
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>${version-native-maven-plugin}</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <id>build-native</id>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <target>${java.version}</target>
+                            <imageName>${project.name}</imageName>
+                            <mainClass>${mainClass}</mainClass>
+                            <verbose>true</verbose>
+                            <fallback>false</fallback>
+                            <buildArgs>
+                                <arg>-Djava.awt.headless=true</arg>
+                                <arg>--no-fallback</arg>
+                                <arg>--enable-preview</arg>
+                                <arg>--enable-http</arg>
+                                <arg>--enable-https</arg>
+                                <arg>--initialize-at-build-time=org.sqlite.util.ProcessRunner</arg>
+                                <arg>--enable-native-access=ALL-UNNAMED</arg>
+                                <arg>-march=native</arg>
+                                <arg>-H:+UnlockExperimentalVMOptions</arg>
+                                <arg>-H:+ReportExceptionStackTraces</arg>
+                                <arg>-H:ConfigurationFileDirectories=src/main/resources/META-INF/native-image/${groupId}/${project.name}}</arg>
+                                <arg>-O3</arg>
+                                <arg>-o ${basedir}/native-image/${project.name}</arg>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
