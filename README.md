@@ -173,7 +173,7 @@ To use the template, or even to test it, follow these steps:
 3) Do a global search and replace for `${PACKAGE_NAME}` and replace it with the base package name (com.simtechdata), click on `Replace All`
 4) Get to a command prompt (I do this in IntelliJ via `ALT+F12`)
 5) Change into the `project root/compile` folder
-6) Execute the set script (Windows: `runjar.bat` and MacOS/Linux: `chmod +x setnix.sh;./setnix.sh`)
+6) Execute the set script (Windows: `setwin.bat` and MacOS/Linux: `chmod +x setnix.sh;./setnix.sh`)
 7) run the `dograal` script (Windows: `dograal.bat` and MacOS/Linux `./dograal.sh`)
 8) Compile the native image (Windows: `native.bat` and MacOS/Linux `./native.sh`) - This will take a while, but it provides plenty of feedback as it works.
 9) Run the native image: `../native-image/TemplateTest -h`
