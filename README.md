@@ -17,7 +17,7 @@ And if my package root is `com.simtechdata`, then I would globally search `${PAC
 
 Once that is done ...
 
-When you are ready to compile the project into a native image, [Follow these steps](#usage-steps)) and you'll have a native image in no time flat!
+When you are ready to compile the project into a native image, [Follow these steps](#usage-steps) and you'll have a native image in no time flat!
 
 ## Scripts
 
