@@ -4,8 +4,7 @@ You will need:
 
 * GraalVM with Java version 25 and you can download it [here](https://www.graalvm.org/downloads/#)
   Chose Java 25 and your Windows version then Download.
-* Apache Maven which you can [download here](https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-3/binaries/apache-maven-4.0.0-rc-3-bin.zip).
-  Link for version `4.0.0-rc-3`.
+* Apache Maven which you can [download here](https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-3/binaries/apache-maven-4.0.0-rc-3-bin.zip)
 * Visual Studio Build Tools (install steps below)
 
 Create a folder off of the root of C and call it graalvm.
