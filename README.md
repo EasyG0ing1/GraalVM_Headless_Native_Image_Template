@@ -17,17 +17,11 @@ And if my package root is `com.simtechdata`, then I would globally search `${PAC
 
 Once that is done ...
 
-When you are ready to compile the project into a native image, use the command line and change into the `compile` folder and then move the scripts from one of the sub-folders into the compile folder.
+When you are ready to compile the project into a native image, [Follow these steps](#usage-steps)) and you'll have a native image in no time flat!
 
-There are two scripts in there for doing just that. If you're using Windows, just run `setwin.bat`. If you're in MacOS or Linux, run this:
+## Scripts
 
-```bash
-chmod +x setnix.sh;./setnix.sh;
-```
-
-You cannot run the scripts from the sub folders (nix and win) as they will not work from those locations because they rely on the parent folder being the project root folder.
-
-Here is a breakdown of what each script / batch file does:
+Here is a breakdown of what the scripts do in the `compile` folder:
 
 |Script| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
