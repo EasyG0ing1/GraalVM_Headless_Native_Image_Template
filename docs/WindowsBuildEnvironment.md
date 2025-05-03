@@ -118,4 +118,4 @@ type: `mvn --version` and hit enter. You should see something that looks like th
 
 If all that is good, then your build environment is ready to go.
 
-[Back to README](https://github.com/EasyG0ing1/GraalVM_Headless_Native_Image_Template/README.md)_
+[Back to README](https://github.com/EasyG0ing1/GraalVM_Headless_Native_Image_Template)_
