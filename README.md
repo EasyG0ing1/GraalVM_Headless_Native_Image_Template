@@ -58,7 +58,7 @@ java -jar MyProject-jar-with-dependencies.jar --option1 --option2
 You have two options:
 
 1) Clone this repository and open the project in IntelliJ - DO NOT EDIT ANYTHING, then click on `File` / `New Projects Setup` / `Save Project As Template`
-2) Click on the Releases page on the right and download the zip file and place it into your `projectTemplates` folder:
+2) [Download the zip file](https://github.com/EasyG0ing1/GraalVM_Headless_Native_Image_Template/releases/latest) and place it into your `projectTemplates` folder:
 
 Here are the typical default locations for that folder for each OS:
 
