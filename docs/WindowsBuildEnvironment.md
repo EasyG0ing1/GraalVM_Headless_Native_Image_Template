@@ -1,9 +1,5 @@
 ## Windows Build Environment
 
-If you have the ability to use a virtual machine and a clean install of Windows, that would be your best option. That
-way, when were're finished, you just delete the VM after you have your binary file. If not, no worries; we'll have a
-clean up process when we're done to remove the build tools that you'll need to install to make this binary.
-
 You will need:
 
 * GraalVM with Java version 25 and you can download it [here](https://www.graalvm.org/downloads/#)
