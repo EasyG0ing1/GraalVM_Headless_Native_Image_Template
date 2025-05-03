@@ -71,4 +71,4 @@ Now, expand the text here for your operating system.
 Your build environment is now ready to go!
 
 
-[Back to README](https://github.com/EasyG0ing1/GraalVM_Headless_Native_Image_Template)_
+[Back to README](https://github.com/EasyG0ing1/GraalVM_Headless_Native_Image_Template)
