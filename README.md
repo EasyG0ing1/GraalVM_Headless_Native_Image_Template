@@ -74,7 +74,7 @@ Java version: 25, vendor: Oracle Corporation, runtime: /Users/michael/.sdkman/ca
 Default locale: en_US, platform encoding: UTF-8
 OS name: "mac os x", version: "15.4", arch: "x86_64", family: "mac"
 ```
-No guarantees with older versions ... the POM file specifically uses native image arguments which are only recognized by the GraalVM 25 JDK.
+No guarantees with older versions ... the POM file specifically uses native image arguments which are only recognized by the GraalVM 24 JDK and newer.
 
 ## JDK Management
 
