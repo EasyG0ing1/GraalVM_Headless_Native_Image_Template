@@ -165,7 +165,7 @@ ChatGPT is becomming a very powerful tool towards saving time in Java developmen
 
 To use the template, or even to test it, follow these steps:
 
-1) Create a new project based on the template. In the new project window, Select the template, then give the project a name (like TemplateTest) and fill in the Base package (I use com.simtechdata for example).
+1) Create a new project based on the template. In the new project window, Select the template, then give the project a name (like TemplateTest).
 2) Do a global search and replace (`Shift-Alt-R`) for `${PROJCT_NAME}` and replace it with the project name (TemplateTest), click on `Replace All`. Your search dialogue should look similar to this where `In Project` is set as the scope.
 
 [<img src="docs/images/readme/GlobalSearch.png" width="50%">]()
